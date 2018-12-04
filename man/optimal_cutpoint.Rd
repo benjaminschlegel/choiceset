@@ -10,9 +10,9 @@ optimal_cutpoint(data, ..., choice, metric = c("Accuracy", "Kappa",
 \arguments{
 \item{data}{The data.frame containing the variables}
 
-\item{...}{to select variables from data (see dplyr::select)}
+\item{...}{To select variables from data (see dplyr::select)}
 
-\item{choice}{A variablename is character of data wich contains the selected choices}
+\item{choice}{The variable with the selected choice in data}
 
 \item{metric}{The metric to use for estimating the cut points.}
 
@@ -29,6 +29,6 @@ choice <- data.frame(PTV.A = c(0, 10, 5, 4, 7, 1, 2, 0, 0, 10),
                      PTV.B = c(5, 0, 1, 10, 6, 7, 10, 9, 5, 0),
                      PTV.C = c(10, 5, 10, 5, 2, 8, 0, 5, 5, 0),
                      VOTE = c("C", "A", "C", "B", "B", "C", "B","B", "B", "A"))
-optimal_cutpoint(choice, PTV.A:PTV.C, choice = "VOTE")
-optimal_cutpoint(choice, PTV.A:PTV.C, choice = "VOTE", metric = "Kappa")
+optimal_cutpoint(choice, PTV.A:PTV.C, choice = VOTE)
+optimal_cutpoint(choice, PTV.A:PTV.C, choice = VOTE, metric = "Kappa")
 }

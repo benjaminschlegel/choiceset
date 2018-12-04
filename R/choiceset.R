@@ -7,7 +7,7 @@
 #' @param threshold The threshold to use, if left empty 0 is used for vote_prop and threshold.estimate for ptv.
 #' @param threshold.estimate Only relevant for type ptv. Default is midpoint where the midpoint between min and max of the data is used. Median uses the median of the data and learning uses the function optimal_cutpoint to estimate a cutpoint for every choice.
 #' @param names Names for the choices, default uses the variable names of data.
-#' @param choice Only needed for threshold.estimate learning; A variablename as character of the selected choice in data.
+#' @param choice Only needed for threshold.estimate learning; The variable with the selected choice in data.
 #' @param metric Only needed for threshold.estimate learning; The metric to use for the learning.
 #' @return The choicesets in the form defined with the parameter output.
 #' @examples

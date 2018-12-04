@@ -26,7 +26,7 @@ choiceset(data, ..., type = c("direct", "ptv", "vote_prop"),
 
 \item{names}{Names for the choices, default uses the variable names of data.}
 
-\item{choice}{Only needed for threshold.estimate learning; A variablename as character of the selected choice in data.}
+\item{choice}{Only needed for threshold.estimate learning; The variable with the selected choice in data.}
 
 \item{metric}{Only needed for threshold.estimate learning; The metric to use for the learning.}
 }

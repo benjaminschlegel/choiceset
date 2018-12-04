@@ -1,8 +1,8 @@
 #' Estimates the optimal cutpoints.
 #'
 #' @param data The data.frame containing the variables
-#' @param ... to select variables from data (see dplyr::select)
-#' @param choice A variablename is character of data wich contains the selected choices
+#' @param ... To select variables from data (see dplyr::select)
+#' @param choice The variable with the selected choice in data
 #' @param metric The metric to use for estimating the cut points.
 #' @param names The names of the choices. Uses variable names of data by default.
 #' @return A list containing two elements. party.cutpoints contains the choice cutpoints. global.cutpoint contains the cutpoint which is globally the best
@@ -11,8 +11,8 @@
 #'                      PTV.B = c(5, 0, 1, 10, 6, 7, 10, 9, 5, 0),
 #'                      PTV.C = c(10, 5, 10, 5, 2, 8, 0, 5, 5, 0),
 #'                      VOTE = c("C", "A", "C", "B", "B", "C", "B","B", "B", "A"))
-#' optimal_cutpoint(choice, PTV.A:PTV.C, choice = "VOTE")
-#' optimal_cutpoint(choice, PTV.A:PTV.C, choice = "VOTE", metric = "Kappa")
+#' optimal_cutpoint(choice, PTV.A:PTV.C, choice = VOTE)
+#' optimal_cutpoint(choice, PTV.A:PTV.C, choice = VOTE, metric = "Kappa")
 optimal_cutpoint <- function (data, ..., choice, metric = c("Accuracy", "Kappa", "Sensitivity", "Specificity", "Balanced"), names = NULL){
   parameter_set <- names(match.call())[-1]
   if (sum(parameter_set == "") > 0) {
@@ -25,6 +25,7 @@ optimal_cutpoint <- function (data, ..., choice, metric = c("Accuracy", "Kappa",
     stop("At least one column is not numeric!")
   }
   ptv.matrix <- as.matrix(selection)
+  choice <- deparse(substitute(choice))
   choice <- data[[choice]]
   if(ncol(ptv.matrix) != length(levels(as.factor(choice)))){
     stop("Number of choices and selected variables do not match.")
