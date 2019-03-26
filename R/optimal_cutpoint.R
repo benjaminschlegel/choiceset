@@ -30,8 +30,8 @@ optimal_cutpoint <- function (data, ..., choice, metric = c("Accuracy", "Kappa",
   if(ncol(ptv.matrix) != length(levels(as.factor(choice)))){
     stop("Number of choices and selected variables do not match.")
   }
-  min <- min(ptv.matrix)
-  max <- max(ptv.matrix)
+  min <- min(ptv.matrix, na.rm = TRUE)
+  max <- max(ptv.matrix, na.rm = TRUE)
   choice.dummy <- dummies::dummy(choice)
   include <- array(NA, dim = c(nrow(ptv.matrix), ncol(ptv.matrix),
                                max - min + 1))
@@ -44,12 +44,6 @@ optimal_cutpoint <- function (data, ..., choice, metric = c("Accuracy", "Kappa",
     names <- levels(as.factor(choice))
   }
   perform <- matrix(NA, nrow = max - min - 1, ncol = ncol(ptv.matrix))
-
-  # CODE FOR COMPUTING VARIOUS QUANTITIES
-  t <- c(12,0,8,0)
-  t <- matrix(t, nrow=2, ncol=2, byrow=F)
-  row.names(t) <- c("1", "0")
-  colnames(t) <- c("1", "0")
 
   for (i in seq_len(ncol(ptv.matrix))) {
     for (j in seq_len(max - min - 1)) {
@@ -65,7 +59,6 @@ optimal_cutpoint <- function (data, ..., choice, metric = c("Accuracy", "Kappa",
       perform[j, i] <- confusionMatrix(t, metric)
     }
   }
-  return(perform)
   party.cutpoints <- apply(perform, 2, which.max) - min - 1
   global.cutpoint <- which.max(rowMeans(perform)) - min - 1
   names(party.cutpoints) <- names

@@ -84,6 +84,7 @@ choiceset <- function(data, ..., type = c('direct', 'ptv', 'vote_prop'),
     return(choice_set_matrix)
   }
   numeric_choice <- apply(choice_set_matrix, 1, get_positions, matrix = choice_set_matrix)
+  numeric_choice = lapply(numeric_choice, na.omit) # remove NAs
 
   if(output == "numeric_list"){
     return(numeric_choice)
