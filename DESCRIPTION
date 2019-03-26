@@ -1,7 +1,7 @@
 Package: choiceset
 Type: Package
 Title: Tools for Choiceset Analysis
-Version: 0.0-1.9004
+Version: 0.0-1.9005
 Authors@R: c(
 	person("Benjamin", "Schlegel", email = "kontakt@benjaminschlegel.ch", role = c("aut", "cre")),
 	person("Marco", "Steenbergen", email = "steenbergen@ipz.uzh.ch", role = "aut"))

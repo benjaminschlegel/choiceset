@@ -56,14 +56,13 @@ choiceset <- function(data, ..., type = c('direct', 'ptv', 'vote_prop'),
         optimal_thresholds <- optimal_cutpoint(selection, choice = choice, metric = match.arg(metric))
         party.cutpoints <- optimal_thresholds$party.cutpoints
         threshold <- rep(party.cutpoints, rep(nrow(choice_set_matrix), ncol(choice_set_matrix)))
-        choice_set_matrix <- (choice_set_matrix >= threshold)
       }else{
         threshold <- ifelse(threshold.estimate == "midpoint",
                             mean(range(choice_set_matrix, na.rm = T)),
                             median(choice_set_matrix, na.rm = T))
-        choice_set_matrix <- (choice_set_matrix >= threshold)
       }
     }
+    choice_set_matrix <- (choice_set_matrix >= threshold)
   }
   if(type == 'vote_prop'){
     if(is.null(threshold)){
